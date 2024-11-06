@@ -72,7 +72,7 @@ function HomePage() {
     <>
       <input
         type="text"
-        placeholder="Enter the image name"
+        placeholder="Enter"
         value={query}
         onChange={(e) => setquery(e.target.value)}
       />

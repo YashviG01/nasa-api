@@ -66,8 +66,8 @@ button:hover {
 
 .image-card:hover {
   transform: translateY(-5px); /* Slight lift on hover */
-  background-color: #e6e9ed; /* Light grey background on hover */
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Stronger shadow on hover */
+  background-color:rgba(20, 18, 18, 0.692) ;/* Light grey background on hover */
+  box-shadow: 0 6px 12px rgba(71, 55, 55, 0.2); /* Stronger shadow on hover */
 }
 
 .image-card img {
