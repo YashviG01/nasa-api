@@ -1,75 +1,66 @@
-import { useState } from 'react';
-import { useParams} from 'react-router-dom';
-import axios from 'axios';
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+// import axios from 'axios';
 function ImageDetails() {
-    const params = useParams();//returns an object
-    const id = params.id;
-      const [imageDetails, setImageDetails] = useState({});
+  const params = useParams(); 
+  console.log(params);
+  const id = params.id;
+  const [imageDetails, setImageDetails] = useState({});
+  console.log(imageDetails);
   const [loading, setloading] = useState(false);
 
+  //const apikey = "2XkYGnwF9RPukNu1YZoGkh55ZiEamvyXRcJvITF0";
 
   const fetchImageDetails = function () {
     setloading(true);
 
-    const apikey = "2XkYGnwF9RPukNu1YZoGkh55ZiEamvyXRcJvITF0";
-
     new Promise(function (resolve, reject) {
-
- // Use axios to fetch data with the API key
- axios.get(`https://images-api.nasa.gov/search`, {
-  params: {
-      nasa_id: id,
-      api_key: apikey
-  }
-})
-       // fetch(`https://images-api.nasa.gov/search?nasa_id=${id}&api_key=${apikey}`)
-           
-        
-        
+      fetch(`https://images-api.nasa.gov/search?nasa_id=${id}`)
         .then(function (response) {
-                if (response.ok) {
-                    resolve(response.json()); 
-                } else {
-                    reject("Network response was not ok"); // Reject if response is not okay
-                }
-            })
-            .catch(function (error) {
-                reject(error); 
-            });
+          if (response.ok) {
+            resolve(response.json());
+          } else {
+            reject("Network response was not ok"); 
+          }
+        })
+        .catch(function (error) {
+          reject(error);
+        });
     })
-    .then(function (data) {
-        setImageDetails(data.collection.items[0]); // Use resolved data
-    })
-    .catch(function (err) {
+      .then(function (data) {
+        setImageDetails(data.collection.items[0]); 
+      })
+      .catch(function (err) {
         console.error("Error fetching image details:", err);
-        alert('Could not fetch image details.');
-    })
-    .finally(function () {
-        setloading(false); // Reset loading state
-    });
-};
+        alert("Could not fetch image details.");
+      })
+      .finally(function () {
+        setloading(false); 
+      });
+  };
 
-  
-
+  useEffect(function () {
     fetchImageDetails();
-  
-
-   
-
-//   if (loading) return <p>Loading might take some time</p>;
+  }, []);
 
   return (
+    <div className="image-details">
+      {loading ? <p>Loading might take some time!!</p> : null}
 
-    
-
-    <div className="imagedetails">
-
-
-{loading ? <p>Loading might take some time!!</p> : null}
-      <h2>{imageDetails.data[0].title}</h2>
-      <img src={imageDetails.links[0].href}  />
-      <p>{imageDetails.data[0].description}</p>
+      {imageDetails?.data?.[0] && (
+        <>
+          <h2>{imageDetails.data[0].title}</h2>
+          <p>{imageDetails.data[0].description}</p>
+          <p><strong>Photographer:</strong> {imageDetails.data[0].photographer || "N/A"}</p>
+          <p><strong>Date Created:</strong> {imageDetails.data[0].date_created}</p>
+          
+          {imageDetails?.links?.[0]?.href && (
+            <img src={imageDetails.links[0].href} alt={imageDetails.data[0].title} />
+          )}
+        </>
+      )}
     </div>
+   
   );
 }
 
