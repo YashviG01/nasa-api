@@ -58,21 +58,12 @@ button:hover {
   position: relative;
   width: 100%;
   height: 100%;
-  transform-style: preserve-3d;
   transition: transform 0.6s;}
 
   .image-card:hover .card-inner {
     transform: rotateY(180deg); }
 
-    /* .card-front img {
-      width: 100%;
-      height: 100px;
-      object-fit: cover;
-      border-radius: 4px;
-    } */
-    /* .card-front {
-      background-color: #fff;
-    } */
+  
 
   .card-back {
       
@@ -83,7 +74,6 @@ button:hover {
       width: 80%;
       height: 10%;
       /* height: 90%; */
-      backface-visibility: hidden; 
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -100,19 +90,13 @@ button:hover {
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  perspective: 1000px;
   transition: transform 0.6s;
  
   border-radius: 10px;
   background-color: white;
   transition: background-color 0.3s ease;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
-  /* width: 180px; 
-  margin: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
-  transition: transform 0.3s ease, background-color 0.3s ease; 
-  border-radius: 10px;
-  background-color: white; */
+ 
 }
 
 .image-card:hover {
