@@ -76,23 +76,23 @@ function HomePage() {
 
   // const apikey = "2XkYGnwF9RPukNu1YZoGkh55ZiEamvyXRcJvITF0";
 
-  const get = async () => {
-    try{
-      const response = await axios.get(`https://image-api.nasa.gov/search`,{
-        params: {
-          // "api_key":apikey,
-          "q": "black hole"
-        }
-      })
-      console.log(response.data);
-    } catch(error) {
-      console.error(error);
-    }
-  }
+  // const get = async () => {
+  //   try{
+  //     const response = await axios.get(`https://image-api.nasa.gov/search`,{
+  //       params: {
+  //         // "api_key":apikey,
+  //         "q": "black hole"
+  //       }
+  //     })
+  //     console.log(response.data);
+  //   } catch(error) {
+  //     console.error(error);
+  //   }
+  // }
 
-  useEffect(() => {
-    get();
-  },[])
+  // useEffect(() => {
+  //   get();
+  // },[])
 
   return (
     <>
